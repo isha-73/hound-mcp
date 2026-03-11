@@ -26,15 +26,13 @@ jobs:
         with:
           node-version: 20.x
           cache: pnpm
+          registry-url: https://registry.npmjs.org
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
       - name: Publish to npm
-        run: pnpm publish --no-git-checks --access public
-        env:
-          NPM_CONFIG_PROVENANCE: true
-          NPM_CONFIG_REGISTRY: https://registry.npmjs.org/
+        run: npm publish --provenance --access public
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
