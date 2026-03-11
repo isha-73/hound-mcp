@@ -1,14 +1,14 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import type { OsvVuln } from "../../src/api/osv.js";
 import {
-  OsvError,
   extractCvssScore,
   extractFixVersions,
   extractSeverity,
   getVuln,
+  OsvError,
   queryVulns,
   queryVulnsBatch,
 } from "../../src/api/osv.js";
-import type { OsvVuln } from "../../src/api/osv.js";
 
 // ---------------------------------------------------------------------------
 // Fixtures
