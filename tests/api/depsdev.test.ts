@@ -1,4 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import type { DepsDevVersion } from "../../src/api/depsdev.js";
 import {
   DepsDevError,
   extractProjectId,
@@ -8,7 +9,6 @@ import {
   getProject,
   getVersion,
 } from "../../src/api/depsdev.js";
-import type { DepsDevVersion } from "../../src/api/depsdev.js";
 
 // ---------------------------------------------------------------------------
 // Fixtures — trimmed snapshots of real API responses
