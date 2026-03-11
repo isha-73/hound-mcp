@@ -1,17 +1,17 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "io.github.tiluckdave/hound",
-  "description": "The dependency bloodhound for AI coding agents. Sniffs out vulnerabilities, license risks, and health issues in your dependencies — free, no API keys, zero config.",
+  "description": "The dependency bloodhound for AI coding agents. Zero API keys, zero config.",
   "repository": {
     "url": "https://github.com/tiluckdave/hound-mcp",
     "source": "github"
   },
-  "version": "0.2.0",
+  "version": "0.2.1",
   "packages": [
     {
       "registryType": "npm",
       "identifier": "hound-mcp",
-      "version": "0.2.0",
+      "version": "0.2.1",
       "transport": {
         "type": "stdio"
       }
