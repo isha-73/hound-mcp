@@ -4,6 +4,7 @@ import { getPackage } from "../api/depsdev.js";
 import { queryVulnsBatch } from "../api/osv.js";
 import { ECOSYSTEM_VALUES } from "../constants/ecosystems.js";
 import type { Ecosystem } from "../types/index.js";
+import { getDefaultVersion } from "../utils/getDefaultVersion.js";
 
 /**
  * Curated list of widely-used packages per ecosystem.
@@ -96,7 +97,7 @@ export function register(server: McpServer) {
       const packageResults = await Promise.allSettled(
         names.map(async (name) => {
           const pkg = await getPackage(eco, name);
-          const defaultVersion = pkg.versions.find((v) => v.isDefault) ?? pkg.versions[0];
+          const defaultVersion = getDefaultVersion(pkg.versions);
           return {
             name,
             version: defaultVersion?.versionKey.version ?? "unknown",

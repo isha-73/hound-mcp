@@ -5,6 +5,7 @@ import { extractSeverity, queryVulns } from "../api/osv.js";
 import { ECOSYSTEM_VALUES } from "../constants/ecosystems.js";
 import { COPYLEFT_LICENSES } from "../constants/licenses.js";
 import type { Ecosystem } from "../types/index.js";
+import { getDefaultVersion } from "../utils/getDefaultVersion.js";
 
 interface PackageData {
   name: string;
@@ -23,7 +24,7 @@ async function gatherPackageData(eco: Ecosystem, name: string): Promise<PackageD
   let defaultVersion: string;
   try {
     const pkg = await getPackage(eco, name);
-    const defaultV = pkg.versions.find((v) => v.isDefault) ?? pkg.versions[pkg.versions.length - 1];
+    const defaultV = getDefaultVersion(pkg.versions);
     if (!defaultV) return null;
     defaultVersion = defaultV.versionKey.version;
   } catch {

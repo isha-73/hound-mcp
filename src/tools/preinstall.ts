@@ -5,6 +5,7 @@ import { extractSeverity, queryVulns } from "../api/osv.js";
 import { ECOSYSTEM_VALUES } from "../constants/ecosystems.js";
 import { COPYLEFT_LICENSES } from "../constants/licenses.js";
 import type { Ecosystem } from "../types/index.js";
+import { getDefaultVersion } from "../utils/getDefaultVersion.js";
 
 export function register(server: McpServer) {
   return server.registerTool(
@@ -29,8 +30,7 @@ export function register(server: McpServer) {
       if (!resolvedVersion) {
         try {
           const pkg = await getPackage(eco, name);
-          const defaultV =
-            pkg.versions.find((v) => v.isDefault) ?? pkg.versions[pkg.versions.length - 1];
+          const defaultV = getDefaultVersion(pkg.versions);
           resolvedVersion = defaultV?.versionKey.version ?? "";
         } catch {
           return {
